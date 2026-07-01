@@ -1,9 +1,17 @@
 import sys
+import os
+os.environ["YF_CACHE_DIR"] = "/tmp"
+
 import time
 from concurrent.futures import ThreadPoolExecutor
 from fastapi import FastAPI, Query, HTTPException, Body, Header
 from fastapi.middleware.cors import CORSMiddleware
 import yfinance as yf
+try:
+    yf.set_tz_cache_dir("/tmp")
+except Exception:
+    pass
+
 import pandas as pd
 import numpy as np
 

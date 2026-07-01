@@ -280,11 +280,28 @@ export default function App() {
       }
     };
     
+    let pollInterval = null;
+    
     ws.onclose = () => {
-      console.log("WebSocket connection closed.");
+      console.log("WebSocket connection closed. Falling back to HTTP polling.");
+      pollInterval = setInterval(() => {
+        fetchGlobals();
+      }, 3500);
+    };
+
+    ws.onerror = () => {
+      console.log("WebSocket connection error. Falling back to HTTP polling.");
+      if (!pollInterval) {
+        pollInterval = setInterval(() => {
+          fetchGlobals();
+        }, 3500);
+      }
     };
     
-    return () => ws.close();
+    return () => {
+      ws.close();
+      if (pollInterval) clearInterval(pollInterval);
+    };
   }, []);
 
   useEffect(() => {
