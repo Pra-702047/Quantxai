@@ -1,0 +1,19 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+venv/
+.venv/
+ENV/
+
+# Database / Local logs
+quantx.db
+trades.csv
+portfolio.json
+positions.json
+
+# Node/React Frontend
+frontend/node_modules/
+frontend/dist/
+frontend/.eslintcache
+.DS_Store
