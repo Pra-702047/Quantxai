@@ -598,10 +598,10 @@ def get_admin_stats(authorization: str = Header(None)):
         raise HTTPException(status_code=403, detail="Unauthorized access. Administrator privileges required.")
         
     import os
-    db_path = "quantx.db"
+    from core.db import DB_FILE
     db_size_kb = 0
-    if os.path.exists(db_path):
-        db_size_kb = round(os.path.getsize(db_path) / 1024, 2)
+    if os.path.exists(DB_FILE):
+        db_size_kb = round(os.path.getsize(DB_FILE) / 1024, 2)
         
     cursor.execute("SELECT COUNT(*) FROM users")
     total_users = cursor.fetchone()[0]

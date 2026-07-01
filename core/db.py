@@ -3,7 +3,10 @@ import os
 import json
 import time
 
-DB_FILE = "quantx.db"
+if os.environ.get("VERCEL") == "1":
+    DB_FILE = "/tmp/quantx.db"
+else:
+    DB_FILE = "quantx.db"
 
 def get_db_connection():
     conn = sqlite3.connect(DB_FILE)
@@ -191,7 +194,10 @@ def save_closed_trade(symbol: str, signal: str, entry_price: float, exit_price: 
     conn.close()
 
     # Append to local trades.csv for easy access
-    csv_file = "trades.csv"
+    if os.environ.get("VERCEL") == "1":
+        csv_file = "/tmp/trades.csv"
+    else:
+        csv_file = "trades.csv"
     import csv
     file_exists = os.path.exists(csv_file)
     try:
