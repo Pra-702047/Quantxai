@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import TradingViewChart from './components/TradingViewChart';
 
-const API_BASE = 'http://127.0.0.1:8000/api'; // Using 127.0.0.1 loopback IP to bypass Windows DNS timeout
+const API_BASE = 'https://quantxai-b4uh-git-main-prathmesh-uttarwars-projects.vercel.app/api';
 const WATCHLIST = [
   'RELIANCE.NS', 'TCS.NS', 'INFY.NS', 'HDFCBANK.NS', 'ICICIBANK.NS', 
   'BHARTIARTL.NS', 'SBIN.NS', 'LICI.NS', 'ITC.NS', 'HINDUNILVR.NS', 
