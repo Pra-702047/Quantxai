@@ -59,6 +59,15 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+@app.get("/")
+def read_root():
+    return {
+        "status": "ONLINE",
+        "name": "QuantX AI Trading API Gateway",
+        "version": "1.0.0",
+        "documentation": "/docs"
+    }
+
 SIGNAL_CACHE = {}
 CACHE_EXPIRATION_SECONDS = 60
 
